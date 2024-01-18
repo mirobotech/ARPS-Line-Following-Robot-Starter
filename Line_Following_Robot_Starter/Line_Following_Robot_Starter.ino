@@ -41,8 +41,8 @@ const int H3 = 12;      // Header H3 (shared with SONAR)
 const int ECHO = 12;    // Ultrasonic SONAR distance sensor ECHO input
 const int H4 = 19;      // Header H4
 
-const int TEMP = A2;    // Temperature sensor
-const int VOLTS = A3;   // Voltage divider 
+const int VTMP = A2;    // ARPS temperature sensor Vout
+const int VDIV = A3;    // ARPS voltage divider Vout
 
 const int onboardLED = 13;  // On Arduino Uno (shared with H2 and SONAR TRIG)
 
@@ -79,8 +79,8 @@ void setup() {
   pinMode(TRIG,OUTPUT); // H2/TRIG SONAR output (if installed)
   pinMode(ECHO,INPUT);  // H3/ECHO SONAR input
   pinMode(H4,INPUT);	  // Define unused header pins as input
-  pinMode(TEMP,INPUT);
-  pinMode(VOLTS,INPUT);
+  pinMode(VTMP,INPUT);
+  pinMode(VDIV,INPUT);
 
   // Set robot outputs and make a beep
   stop();               // Call stop function to keep the motors off
@@ -111,11 +111,11 @@ void loop() {
   }
 }
 
-// Motor movement functions. Create a function for each direction that
-// your robot should to be able to drive. Can you come up with eight
-// possible directions, plus stop? Does your robot need all eight? If
-// you create all of the movement functions now, you will be able to
-// easily adapt your robot for other types of tasks.
+// Motor movement functions. Create a function for each direction that your
+// robot should drive in. Can you come up with eight different possible
+// movement directions, plus stop? Does your robot need all eight? If you
+// create all of the different movement functions now, you will be able to
+// easily adapt your robot for other types of tasks later.
 
 // stop() function - Turns all motor outputs off
 void stop() {
@@ -125,8 +125,8 @@ void stop() {
   digitalWrite(M2B,LOW);
 }
 
-// fwd function - Turns left and right motorss on in opposite directions.
-// Use this function to test your motors. If your robot does not move forward
+// fwd() function - Turns left and right motors on in opposite directions. Use
+// this function to test your motors. If your robot does not move forward then
 // either switch the wires of the backwards motor(s) on the ARPS screw terminal
 // strip, or use the opposite HIGH and LOW output values in the code below:
 void fwd() {
