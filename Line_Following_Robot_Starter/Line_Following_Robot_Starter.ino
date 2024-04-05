@@ -1,26 +1,28 @@
 /*
  Project: Line Following Robot Starter       Activity: mirobo.tech/arps
- Date:    January 16, 2024
+ Date:    April 4, 2024
  
- This is a starter program template to create a simple line-following robot
- using the mirobo.tech ARPS circuit and an Arduino UNO. Follow the instructions
- in the program code comments to complete the program.
+ Use this starter program template with the mirobot.tech ARPS circuit and an
+ Arduino UNO to create a simple line-following robot. Follow the instructions
+ in the program code comments to test your motors and complete the program.
+
+ See the https://mirobo.tech/electronics website for more programming activities.
 */
 
-// Define I/O pins used for human interface devices
-const int SW2 = 0;      // Pushbuttons
-const int SW3 = 1;
-const int SW4 = 2;
-const int SW5 = 3;
+// Define I/O pins used by ARPS human interface devices
+const int SW2 = 0;      // Pushbuttons SW2 and SW3 are supported on Arduino
+const int SW3 = 1;      // UNO R4 Minima and Arduino UNO R4 WiFi
+const int SW4 = 2;      // Pushbuttons SW4 and SW5 work on all Arduino UNO R3
+const int SW5 = 3;      // and Arduino UNO R4 circuit boards
 
-const int LED2 = 5;     // Top LEDs
+const int LED2 = 5;     // ARPS LEDs
 const int LED3 = 6;
 const int LED4 = 9;
 const int LED5 = 10;
 
-const int BEEPER = 11;  // Piezo beeper LS1
+const int BEEPER = 11;  // ARPS Piezo beeper LS1
 
-// Define I/O pins for special purpose interface devices
+// Define I/O pins used by ARPS special purpose interface devices
 const int M1A = 5;      // Motor 1 - output A
 const int M1B = 6;      // Motor 1 - output B
 const int M2A = 9;      // Motor 2 - output A
@@ -44,23 +46,20 @@ const int H4 = 19;      // Header H4
 const int VTMP = A2;    // ARPS temperature sensor Vout
 const int VDIV = A3;    // ARPS voltage divider Vout
 
-const int onboardLED = 13;  // On Arduino Uno (shared with H2 and SONAR TRIG)
-
 // Define program constants
 const int LIGHT = LOW;
 const int DARK = HIGH;
 
 // Define variables
-int SW2state;           // Button state variables
-int SW3state;
-int SW4state;
-int SW5state;
+int SW2State;           // Button state variables
+int SW3State;
+int SW4State;
+int SW5State;
 int lineLeft;           // Left line sensor state
 int lineRight;          // Right line sensor state
 
 // Setup code runs once to configure I/O pins before running main loop
 void setup() {
-  pinMode(onboardLED,OUTPUT);
   pinMode(SW2,INPUT_PULLUP);
   pinMode(SW3,INPUT_PULLUP);
   pinMode(SW4,INPUT_PULLUP);
@@ -70,6 +69,7 @@ void setup() {
   pinMode(LED4,OUTPUT);
   pinMode(LED5,OUTPUT);
   pinMode(BEEPER,OUTPUT);
+  pinMode(LED_BUILTIN,OUTPUT);
   pinMode(IR,INPUT);
   pinMode(LED6,OUTPUT);
   pinMode(LED7,OUTPUT);
